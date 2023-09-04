@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 import Form from "@components/Form";
 
-const CreatePrompt = () => {
+const CreatePromptPage = () => {
 	const [submitting, setSubmitting] = useState(false);
 	const [post, setPost] = useState({
 		prompt: "",
@@ -47,4 +47,4 @@ const CreatePrompt = () => {
 		/>
 	);
 };
-export default CreatePrompt;
+export default CreatePromptPage;
