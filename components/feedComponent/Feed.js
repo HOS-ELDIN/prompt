@@ -1,9 +1,10 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import PromptCardList from "./PromptCardList";
 import SearchForm from "./SearchForm";
+import { promptopiaContext } from "@utils/ContextProvider";
 
 const Feed = () => {
 	const [searchText, setSearchText] = useState("");
@@ -11,6 +12,7 @@ const Feed = () => {
 	const [filteredPosts, setFilteredPosts] = useState(posts);
 	const { data: session, status } = useSession();
 	const router = useRouter();
+	const { reFetch, setReFetch } = useContext(promptopiaContext);
 
 	const handleSearchChange = (e) => {
 		e.preventDefault();
@@ -36,10 +38,11 @@ const Feed = () => {
 			const data = await response.json();
 
 			setPosts(data);
+			setReFetch(false);
 		};
 		fetchPosts();
 		//eslint-disable-next-line
-	}, []);
+	}, [reFetch]);
 
 	useEffect(() => {
 		// console.log("filter effect runs");

@@ -2,7 +2,8 @@ import "@styles/globals.css";
 import { Inter } from "next/font/google";
 import Nav from "@components/Nav";
 import Provider from "@components/Provider";
-
+// import { useContext } from "react";
+import { ContextProvider } from "@utils/ContextProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -18,11 +19,12 @@ export default function RootLayout({ children }) {
 					<div className="main">
 						<div className="gradient" />
 					</div>
-
-					<main className="app">
-						<Nav />
-						{children}
-					</main>
+					<ContextProvider>
+						<main className="app">
+							<Nav />
+							{children}
+						</main>
+					</ContextProvider>
 				</Provider>
 			</body>
 		</html>
