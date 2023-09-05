@@ -5,7 +5,7 @@ export const GET = async (req, res) => {
 	try {
 		await connectToDB();
 
-		const prompts = await Prompt.find({}).populate("creator");
+		const prompts = await Prompt.find().populate("creator");
 
 		return new Response(JSON.stringify(prompts), { status: 200 });
 	} catch (error) {
@@ -13,4 +13,3 @@ export const GET = async (req, res) => {
 		return new Response("Failed to fetch all prompt", { status: 500 });
 	}
 };
-``
