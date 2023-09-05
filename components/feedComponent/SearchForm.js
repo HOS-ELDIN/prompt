@@ -1,4 +1,12 @@
-const SearchForm = ({ searchText, handleSearchChange }) => {
+import { promptopiaContext } from "@utils/ContextProvider";
+import { useContext } from "react";
+
+const SearchForm = () => {
+	const {
+		searchText,
+
+		handleSearchChange,
+	} = useContext(promptopiaContext);
 	return (
 		<form
 			className="relative w-full flex-center"

@@ -1,12 +1,12 @@
 "use client";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import tick from "@public/icons/tick.svg";
 import copy from "@public/icons/copy.svg";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { promptopiaContext } from "@utils/ContextProvider";
 
 const PromptCard = ({
 	card,
@@ -16,10 +16,13 @@ const PromptCard = ({
 	handleOpenProfile,
 }) => {
 	const [copied, setCopied] = useState("");
-	const { data: session, status } = useSession();
-	const router = useRouter();
 	const pathName = usePathname();
 	// console.log(card)
+
+	const {
+		session,
+		status,
+	} = useContext(promptopiaContext);
 
 	const handleCopy = () => {
 		setCopied(card.prompt);

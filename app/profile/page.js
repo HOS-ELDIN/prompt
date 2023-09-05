@@ -1,14 +1,11 @@
 "use client";
-import { useState, useEffect } from "react";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-
+import { useEffect, useContext } from "react";
 import Profile from "@components/Profile";
+import { promptopiaContext } from "@utils/ContextProvider";
 
 const ProfilePage = () => {
-	const [posts, setPosts] = useState([]);
-	const { data: session, status } = useSession();
-	const router = useRouter();
+	const { session, status, router, profilePosts, setProfilePosts } =
+		useContext(promptopiaContext);
 
 	useEffect(() => {
 		// console.log("useeffect run");
@@ -17,7 +14,7 @@ const ProfilePage = () => {
 			const response = await fetch(`/api/users/${session?.user.id}/posts`);
 			const data = await response.json();
 
-			setPosts(data);
+			setProfilePosts(data);
 		};
 
 		if (session?.user) fetchPosts();
@@ -40,8 +37,10 @@ const ProfilePage = () => {
 					method: "DELETE",
 				});
 
-				const filteredPosts = posts.filter((post) => post._id !== prompt._id);
-				setPosts(filteredPosts);
+				const filteredPosts = profilePosts.filter(
+					(post) => post._id !== prompt._id
+				);
+				setProfilePosts(filteredPosts);
 			} catch (error) {
 				console.log(error);
 			}
@@ -51,7 +50,7 @@ const ProfilePage = () => {
 		<Profile
 			name={"My"}
 			desc={"welcome to your personalized profile page"}
-			data={posts}
+			data={profilePosts}
 			handleEdit={handleEdit}
 			handleDelete={handleDelete}
 		/>

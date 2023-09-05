@@ -1,7 +1,5 @@
 "use client";
 import { useState, useContext } from "react";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import { promptopiaContext } from "@utils/ContextProvider";
 
 import Form from "@components/Form";
@@ -12,10 +10,12 @@ const CreatePromptPage = () => {
 		prompt: "",
 		tag: "",
 	});
-	const router = useRouter();
-	const { data: session } = useSession();
 
-	const { setReFetch } = useContext(promptopiaContext);
+	const {
+		setReFetch,
+		session,
+		router
+	} = useContext(promptopiaContext);
 
 	const CreatePrompt = async (e) => {
 		e.preventDefault();
@@ -31,7 +31,7 @@ const CreatePromptPage = () => {
 			});
 
 			if (response.ok) {
-				setReFetch(ture);
+				setReFetch(true);
 				router.push("/");
 			}
 		} catch (error) {

@@ -62,10 +62,7 @@ const Nav = () => {
 								<button
 									type="button"
 									key={provider.name}
-									onClick={() => {
-										e.preventDefault();
-										signIn(provider.id);
-									}}
+									onClick={() => signIn(provider.id)}
 									className="black_btn"
 								>
 									Sign In
@@ -124,10 +121,7 @@ const Nav = () => {
 								<button
 									type="button"
 									key={provider.name}
-									onClick={() => {
-										e.preventDefault();
-										signIn(provider.id);
-									}}
+									onClick={() => signIn(provider.id)}
 									className="black_btn"
 								>
 									Sign In
