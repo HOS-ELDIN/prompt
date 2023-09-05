@@ -1,6 +1,6 @@
 "use client";
 import PromptCardList from "./PromptCardList";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import SearchForm from "./SearchForm";
 import { promptopiaContext } from "@utils/ContextProvider";
 
