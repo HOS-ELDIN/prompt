@@ -26,7 +26,7 @@ export function ContextProvider({ children }) {
 	};
 
 	const handleOpenProfile = (creator) => {
-		if (session.user && creator._id) {
+		if (session?.user && creator._id) {
 			setProfilePosts([]);
 			session?.user.id === creator._id
 				? router.push(`profile`)

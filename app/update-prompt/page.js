@@ -1,8 +1,9 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import {  useSearchParams } from "next/navigation";
 
 import Form from "@components/Form";
+import { promptopiaContext } from "@utils/ContextProvider";
 
 const UpdatePromptPage = () => {
 	const [submitting, setSubmitting] = useState(false);
