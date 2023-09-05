@@ -5,7 +5,8 @@ import SearchForm from "./SearchForm";
 import { promptopiaContext } from "@utils/ContextProvider";
 
 const Feed = () => {
-	const { session, setPosts, setReFetch } = useContext(promptopiaContext);
+	const { session, setPosts, setReFetch, reFetch } =
+		useContext(promptopiaContext);
 
 	useEffect(() => {
 		const fetchPosts = async () => {
