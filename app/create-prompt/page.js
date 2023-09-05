@@ -31,8 +31,8 @@ const CreatePromptPage = () => {
 			});
 
 			if (response.ok) {
-				router.push("/");
 				setReFetch(ture);
+				router.push("/");
 			}
 		} catch (error) {
 			console.log(error);
