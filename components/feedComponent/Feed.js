@@ -5,9 +5,20 @@ import SearchForm from "./SearchForm";
 import { promptopiaContext } from "@utils/ContextProvider";
 
 const Feed = () => {
-	const { session } = useContext(promptopiaContext);
+	const { session, setPosts, setReFetch } = useContext(promptopiaContext);
 
-	//eslint-disable-next-line
+	useEffect(() => {
+		const fetchPosts = async () => {
+			console.log("fetch runs from feed");
+			const response = await fetch("api/prompt");
+			const data = await response.json();
+
+			setPosts(data);
+			setReFetch(false);
+		};
+		fetchPosts();
+		//eslint-disable-next-line
+	}, [reFetch]);
 
 	return (
 		<section className="feed">
