@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import {  useSearchParams } from "next/navigation";
 
 import Form from "@components/Form";
 
@@ -12,7 +12,11 @@ const UpdatePromptPage = () => {
 		prompt: "",
 		tag: "",
 	});
-	const router = useRouter();
+
+	const {
+		setReFetch,
+		router,
+	} = useContext(promptopiaContext);
 
 	useEffect(() => {
 		const getPromptDetails = async () => {
@@ -41,6 +45,7 @@ const UpdatePromptPage = () => {
 				}),
 			});
 			if (response.ok) {
+				setReFetch(true);
 				router.push("/profile");
 			}
 		} catch (error) {
