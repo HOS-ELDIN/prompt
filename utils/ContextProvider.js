@@ -49,7 +49,7 @@ export function ContextProvider({ children }) {
 	useEffect(() => {
 		const fetchPosts = async () => {
 			console.log("fetch runs from context");
-			const response = await fetch("api/prompt");
+			const response = await fetch("api/prompt", { cache: "no-store" });
 			const data = await response.json();
 
 			setPosts(data);
